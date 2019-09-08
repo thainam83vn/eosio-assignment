@@ -1,2 +1,2 @@
 import React from 'react';
-export default () => <h1>Block One</h1>;
+export default () => <h1>block.one</h1>;
