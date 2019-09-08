@@ -35,14 +35,14 @@ class BlockItemContentContracts extends React.Component {
     } = this.props;
     const block = blocks.find(b => b.id === selectedBlockId);
     const accActions = block.accounts[selectedAccount];
-    const actions = _.get(selectedContracts, 'abi.actions') || [];
+    let actions = _.get(selectedContracts, 'abi.actions') || [];
+    actions = actions.filter(action => action.ricardian_contract.length > 0);
     return (
       <Modal isOpen={!!selectedContracts} toggle={clearAccount}>
         <ModalHeader toggle={clearAccount}>{selectedAccount}</ModalHeader>
         <ModalBody>
-          {actions
-            // .filter(action => action.ricardian_contract.length > 0)
-            .reduce((all, action, i1) => {
+          {actions.length > 0 &&
+            actions.reduce((all, action, i1) => {
               return [
                 ...all,
                 ...accActions.map((acc, i2) => (
@@ -51,7 +51,9 @@ class BlockItemContentContracts extends React.Component {
                     key={i1 + i2}
                   >
                     <CardBody>
-                      <CardTitle>{action.name}</CardTitle>
+                      <CardTitle>
+                        <b>{action.name}</b>
+                      </CardTitle>
                       <CardText>
                         {this.markDownContract(action, acc.data)}
                       </CardText>
@@ -60,6 +62,7 @@ class BlockItemContentContracts extends React.Component {
                 ))
               ];
             }, [])}
+          {actions.length === 0 && <div>No ricardian_contract founds.</div>}
         </ModalBody>
       </Modal>
     );
