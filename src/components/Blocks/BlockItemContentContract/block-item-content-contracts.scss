@@ -1,6 +1,14 @@
+@import '../../../variables.scss';
+
 .block-item-content-contracts {
   min-height: 100px;
   .block-item-content-contracts-account {
     margin: 5px;
+  }
+
+  @media screen and (max-width: $break-small) {
+    .block-item-content-contracts-account {
+      width: calc(100% - 10px);
+    }
   }
 }

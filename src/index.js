@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
-import './common-styles.scss';
+import './common.scss';
 
 ReactDOM.render(
   <Root>

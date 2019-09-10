@@ -30,7 +30,7 @@ class BlockItem extends React.Component {
           className='block-item-header pointer'
           onClick={this.handleClick.bind(this)}
         >
-          {id}
+          <div className='block-item-header-id'>{id}</div>
           {timestamp && (
             <div className='block-item-header-time'>{timestamp}</div>
           )}
