@@ -58,7 +58,7 @@ class BlockItemContent extends React.Component {
       <div className='block-item-content'>
         <Nav tabs>
           {navItems.map(navItem => (
-            <NavItem>
+            <NavItem key={navItem.code}>
               <NavLink
                 className={classnames(
                   { active: this.state.activeTab === navItem.code },
@@ -76,7 +76,7 @@ class BlockItemContent extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           {navItems.map(navItem => (
-            <TabPane tabId={navItem.code}>
+            <TabPane tabId={navItem.code} key={navItem.code}>
               <Row>
                 <Col sm='12' className='block-item-content-view'>
                   {navItem.render(block)}
