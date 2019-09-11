@@ -25,7 +25,7 @@ beforeEach(() => {
   moxios.stubRequest('https://api.eosnewyork.io/v1/chain/get_block', {
     status: 200,
     response: {
-      id: Math.floor(Math.random() * Math.floor(1000)),
+      id: Math.floor(Math.random() * Math.floor(1000)) + 2,
       previous: '0',
       transactions: []
     }
