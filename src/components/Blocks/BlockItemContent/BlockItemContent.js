@@ -35,75 +35,55 @@ class BlockItemContent extends React.Component {
 
   render() {
     const { block } = this.props;
+    const navItems = [
+      {
+        code: '1',
+        name: 'Visual',
+        render: block => <ReactJson src={block} collapsed={true} />
+      },
+      {
+        code: '2',
+        name: 'Raw',
+        render: block => JSON.stringify(block)
+      },
+      {
+        code: '3',
+        name: 'Contracts',
+        render: block =>
+          this.state.activeTab === '3' && <BlockItemContentContracts />
+      }
+    ];
 
     return (
       <div className='block-item-content'>
         <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames(
-                { active: this.state.activeTab === '1' },
-                'block-item-content-tab-link',
-                'pointer'
-              )}
-              onClick={() => {
-                this.toggle('1');
-              }}
-            >
-              Visual
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames(
-                { active: this.state.activeTab === '2' },
-                'block-item-content-tab-link',
-                'pointer'
-              )}
-              onClick={() => {
-                this.toggle('2');
-              }}
-            >
-              Raw
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames(
-                { active: this.state.activeTab === '3' },
-                'block-item-content-tab-link',
-                'pointer'
-              )}
-              onClick={() => {
-                this.toggle('3');
-              }}
-            >
-              Contracts
-            </NavLink>
-          </NavItem>
+          {navItems.map(navItem => (
+            <NavItem>
+              <NavLink
+                className={classnames(
+                  { active: this.state.activeTab === navItem.code },
+                  'block-item-content-tab-link',
+                  'pointer'
+                )}
+                onClick={() => {
+                  this.toggle(navItem.code);
+                }}
+              >
+                {navItem.name}
+              </NavLink>
+            </NavItem>
+          ))}
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId='1'>
-            <Row>
-              <Col sm='12' className='block-item-content-view'>
-                <ReactJson src={block} collapsed={true} />
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId='2'>
-            <Row>
-              <Col sm='12' className='block-item-content-view'>
-                {JSON.stringify(block)}
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId='3'>
-            <Row>
-              <Col sm='12' className='block-item-content-view'>
-                {this.state.activeTab === '3' && <BlockItemContentContracts />}
-              </Col>
-            </Row>
-          </TabPane>
+          {navItems.map(navItem => (
+            <TabPane tabId={navItem.code}>
+              <Row>
+                <Col sm='12' className='block-item-content-view'>
+                  {navItem.render(block)}
+                </Col>
+              </Row>
+            </TabPane>
+          ))}
         </TabContent>
       </div>
     );
