@@ -12,7 +12,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "moxios": "^0.4.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
