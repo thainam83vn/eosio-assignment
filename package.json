@@ -22,7 +22,8 @@
     "react-scripts": "3.1.1",
     "reactstrap": "^8.0.1",
     "redux-saga": "^1.0.5",
-    "replace-string": "^3.0.0"
+    "replace-string": "^3.0.0",
+    "@snyk/protect": "latest"
   },
   "scripts": {
     "react": "react-scripts start",
@@ -30,7 +31,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "proxyapi": "node proxy-api.js",
-    "start": "npm-run-all -p proxyapi react"
+    "start": "npm-run-all -p proxyapi react",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,5 +52,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "snyk": true
 }
